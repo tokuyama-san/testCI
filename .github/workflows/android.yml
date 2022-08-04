@@ -37,7 +37,7 @@ jobs:
           name: app-debug
           
       - name: "bbb"  
-        run: cat '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
+        run: echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
 
       - id: "auth"
         uses: 'google-github-actions/auth@v0'
