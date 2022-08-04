@@ -49,6 +49,9 @@ jobs:
 
       - name: 'Use gcloud CLI'
         run: gcloud projects list
+        
+      - name: Set current project
+        run: gcloud config set project ${{ secrets.FIREBASE_PROJECT_ID }}
 
       - name: Run Test on Firebase Test Lab
         run: gcloud firebase test android run --type robo --app app-debug/app-debug.apk --device model=Pixel2,version=28,locale=ja,orientation=portrait
