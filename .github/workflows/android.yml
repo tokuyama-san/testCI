@@ -50,5 +50,5 @@ jobs:
       - name: Run Test on Firebase Test Lab
         run: gcloud firebase test android run --type robo --app app-debug/app-debug.apk \
          --device model=redfin,version=30,locale=ja,orientation=portrait \
-         --robo-directives text:username=test@toku.com,text:password=123456789
+         --robo-directives text:username=test
         
