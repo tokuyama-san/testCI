@@ -53,5 +53,5 @@ jobs:
             --type robo \
             --app app-debug/app-debug.apk \
             --device model=redfin,version=30,locale=ja,orientation=portrait \
-            --robo-directives text:username=test,text:password=ppp
+            --robo-directives text:username=test,text:password=ppp,ignore:buttonA=
         
