@@ -1,10 +1,10 @@
 name: Android CI2
 
-on:
-  schedule:
-    # JST: 15:30
-    - cron: '30 6 * * *'
-
+# on:
+#   schedule:
+#     # JST: 15:30
+#     - cron: '30 6 * * *'
+on: [workflow_dispatch]
 jobs:
   build:
 
