@@ -22,4 +22,18 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
-      run: ./gradlew build
+      run: ./gradlew assembleDebug
+
+    - name: Install Firebase CLI
+      run: |
+        yarn global add firebase-tools
+    - name: make GOOGLE_APPLICATION_CREDENTIALS
+      run: echo $GCLOUD_SERVICE_KEY | base64 -d > $GOOGLE_APPLICATION_CREDENTIALS
+    - name: Distribute apk
+      working-directory: ./android
+      run: |
+        firebase appdistribution:distribute \
+          ./app/build/outputs/apk/debug/app-debug.apk \
+          --project $PROJECT_ID \
+          --app $APP_ID \
+          --groups "test_app"
