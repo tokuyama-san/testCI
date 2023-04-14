@@ -8,6 +8,8 @@ on: [workflow_dispatch, push]
 env:
   GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
   GCLOUD_SERVICE_KEY: ${{ secrets.GCLOUD_SERVICE_KEY }}
+  PROJECT_ID: ${{ secrets.PROJECT_ID }}
+  APP_ID: ${{ secrets.APP_ID }}
 jobs:
   build:
 
