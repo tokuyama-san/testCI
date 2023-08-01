@@ -1,0 +1,46 @@
+name: Create Release on Tag Push
+on:
+  push:
+    tags:
+      - 'v*' # この行でタグ名のパターンを指定します。ここでは'v'で始まるタグを対象にしています。
+
+jobs:
+  create_release:
+    name: Create Release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Create Release
+        id: create_release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          tag=$(git describe --tags --abbrev=0)
+          name=$(git show -s --format=%s $tag)
+          body=$(git show -s --format=%b $tag)
+          echo "Tag: $tag"
+          echo "Name: $name"
+          echo "Body: $body"
+          echo "::set-output name=tag::$tag"
+          echo "::set-output name=name::$name"
+          echo "::set-output name=body::$body"
+          gh release create $tag --title "$name" --notes "$body"
+
+      - name: Upload assets
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          tag=$("${{ steps.create_release.outputs.tag }}")
+          echo "Tag: $tag"
+          gh release upload $tag ./path/to/your/asset.zip
