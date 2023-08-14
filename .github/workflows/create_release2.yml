@@ -2,7 +2,7 @@ name: Create Release on Tag Push
 on:
   push:
     tags:
-      - 'v*' # この行でタグ名のパターンを指定します。ここでは'v'で始まるタグを対象にしています。
+      - 'vv*' # この行でタグ名のパターンを指定します。ここでは'v'で始まるタグを対象にしています。
 
 jobs:
   create_release:
