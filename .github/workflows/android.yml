@@ -20,7 +20,7 @@ jobs:
         run: bash ./gradlew assembleDebug --stacktrace
     
       - name: Upload app APK
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v4
         with:
           name: app-debug
           path: app/build/outputs/apk/debug/app-debug.apk
@@ -31,7 +31,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Download APK
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4
         with:
           name: app-debug
 
